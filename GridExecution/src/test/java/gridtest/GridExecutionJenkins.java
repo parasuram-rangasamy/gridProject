@@ -23,13 +23,9 @@ public class GridExecutionJenkins {
 
 	@Before
 	public void setUp() throws Exception {
-		DesiredCapabilities capability = new DesiredCapabilities();
-		capability.setBrowserName("firefox");
-		capability.setVersion("31.0");
-		capability.setJavascriptEnabled(true);
-		capability.setCapability("jenkins.label","AspireVM4-12 && windows_vm");
-		capability.setCapability("platform", "Windows 7");
-		driver = new RemoteWebDriver(new URL("http://172.24.166.91:4444/wd/hub"), capability);
+		new DesiredCapabilities();
+		DesiredCapabilities capability = DesiredCapabilities.firefox();		
+		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capability);
 		//driver = new FirefoxDriver(capability);
 		baseUrl = "https://www.google.com/";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -43,7 +39,7 @@ public class GridExecutionJenkins {
 		driver.findElement(By.id("lst-ib")).sendKeys("testing");
 		driver.findElement(By.name("btnG")).click();
 		driver.findElement(
-				By.xpath("(//a[contains(text(),'Software testing - Wikipedia, the free encyclopedia')])[2]"))
+				By.linkText("Software testing - Wikipedia, the free encyclopedia"))
 				.click();
 		Thread.sleep(10000);
 		assertEquals("Software testing - Wikipedia, the free encyclopedia",
@@ -69,7 +65,7 @@ public class GridExecutionJenkins {
 		driver.findElement(By.id("lst-ib")).sendKeys("smoke testing");
 		driver.findElement(By.name("btnG")).click();
 		driver.findElement(
-				By.xpath("(//a[contains(text(),'Smoke testing (software) - Wikipedia, the free encyclopedia')])[2]"))
+				By.linkText("Smoke testing (software) - Wikipedia, the free encyclopedia"))
 				.click();
 		Thread.sleep(10000);
 		assertEquals("Smoke testing (software) - Wikipedia, the free encyclopedia",
