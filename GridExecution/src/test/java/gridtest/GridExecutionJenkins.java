@@ -23,7 +23,7 @@ public class GridExecutionJenkins {
 	@Before
 	public void setUp() throws Exception {
 		DesiredCapabilities capability = new DesiredCapabilities();
-		capability.setBrowserName("firefox");
+		capability.setBrowserName("chrome");
 		capability.setVersion("17.0");
 		capability.setCapability("jenkins.label","AspireVM4-12 && windows_vm");
 		capability.setCapability("platform", "Windows 7");
