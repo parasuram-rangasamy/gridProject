@@ -24,7 +24,7 @@ public class GridExecutionJenkins {
 	public void setUp() throws Exception {
 		DesiredCapabilities capability = new DesiredCapabilities();
 		capability.setBrowserName("firefox");
-		capability.setVersion("31.0");
+		capability.setVersion("17.0");
 		capability.setCapability("jenkins.label","AspireVM4-12 && windows_vm");
 		capability.setCapability("platform", "Windows 7");
 		driver = new RemoteWebDriver(new URL("http://172.24.166.91:4444/wd/hub"), capability);
