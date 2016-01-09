@@ -12,22 +12,25 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class GridExecutionJenkins {
-	private WebDriver driver;
+	WebDriver driver;
 	private String baseUrl;
 	private StringBuffer verificationErrors = new StringBuffer();
 
 	@Before
 	public void setUp() throws Exception {
 		DesiredCapabilities capability = new DesiredCapabilities();
-		capability.setBrowserName("chrome");
-		//capability.setVersion("17.0");
+		capability.setBrowserName("firefox");
+		capability.setVersion("31.0");
+		capability.setJavascriptEnabled(true);
 		capability.setCapability("jenkins.label","AspireVM4-12 && windows_vm");
 		capability.setCapability("platform", "Windows 7");
 		driver = new RemoteWebDriver(new URL("http://172.24.166.91:4444/wd/hub"), capability);
+		//driver = new FirefoxDriver(capability);
 		baseUrl = "https://www.google.com/";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
